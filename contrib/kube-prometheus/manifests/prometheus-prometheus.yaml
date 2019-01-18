@@ -28,5 +28,10 @@ spec:
     runAsUser: 1000
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
-  serviceMonitorSelector: {}
+  serviceMonitorSelector:
+    matchExpressions:
+      - {key: k8s-app, operator: Exists}
   version: v2.5.0
+  remoteWrite:
+    - url: "http://influxdb-influxdb-svc:8086/api/v1/prom/write?db=prometheus&u=root&p=root"
+  retention: 30m

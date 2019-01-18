@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: shipping
+  labels:
+    k8s-app: shipping
+  namespace: sock-shop
+spec:
+  jobLabel: k8s-app
+  selector:
+    matchLabels:
+      k8s-app: shipping
+  namespaceSelector:
+    matchNames:
+    - sock-shop
+  endpoints:
+  - port: web
+    interval: 1s

@@ -38,6 +38,23 @@ items:
   kind: Role
   metadata:
     name: prometheus-k8s
+    namespace: sock-shop
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - nodes
+    - services
+    - endpoints
+    - pods
+    verbs:
+    - get
+    - list
+    - watch
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: prometheus-k8s
     namespace: monitoring
   rules:
   - apiGroups:

@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: orders-db
+  labels:
+    k8s-app: front-end
+  namespace: sock-shop
+spec:
+  jobLabel: k8s-app
+  selector:
+    matchLabels:
+      k8s-app: front-end
+  namespaceSelector:
+    matchNames:
+    - sock-shop
+  endpoints:
+  - port: mongo
+    interval: 1s
